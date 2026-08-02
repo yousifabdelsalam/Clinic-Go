@@ -1,4 +1,7 @@
+import 'package:clinic_go/features/home/presentation/cubit/cubit.dart';
+import 'package:clinic_go/features/home/presentation/cubit/states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,25 +38,32 @@ Widget glassBottomBar({
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _navItem(Icons.home_filled, true,context ),
-          _navItem(Icons.local_activity_outlined, true,context ),
-          _navItem(Icons.notifications_none_outlined, true,context ),
-          _navItem(Icons.settings, true,context ),
+          _navItem(Icons.home_filled, true,context,0 ),
+          _navItem(Icons.local_activity_outlined, true,context,1 ),
+          _navItem(Icons.notifications_none_outlined, true,context,2 ),
+          _navItem(Icons.settings, true,context,3 ),
         ],
       ),
     ),
   );
 }
 
-Widget _navItem(IconData icon, bool isActive,BuildContext context) {
-  return IconButton(
-    icon: Icon(icon,
-      color: isActive ? Colors.tealAccent : Colors.white70,
-      size: 28,
-    ),
-    onPressed:() {
-      context.go("/categories");
+Widget _navItem(IconData icon, bool isActive,BuildContext context,int index) {
+  return BlocConsumer<AppCubit,AppStates>(
+    builder: (BuildContext context, AppStates state) {
+      AppCubit cubit = AppCubit.get(context);
+      return IconButton(
+        icon: Icon(icon,
+          color: isActive ? Colors.tealAccent : Colors.white70,
+          size: 28,
+        ),
+        onPressed:() {
+          cubit.changeScreen(index);
+        },
+
+      );
     },
+    listener: (BuildContext context, AppStates state) {  },
 
   );
 }
