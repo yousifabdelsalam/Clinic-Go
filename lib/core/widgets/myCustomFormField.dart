@@ -31,14 +31,16 @@ class CustomTextField extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: keyboardType,
         validator: validator,
-
+        style: TextStyle(color: Colors.white),
         autovalidateMode: AutovalidateMode.onUserInteraction, // Smooth validation UX
         decoration: InputDecoration(
           labelText: labelText,
           labelStyle: TextStyle(color: Colors.white),
           hintText: hintText,
+          hintStyle: TextStyle(color: Colors.white),
           prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
           suffixIcon: suffixIcon,
+          suffixIconColor: Colors.white,
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           // Rounded border styling matching app-wide theme radius
           border: OutlineInputBorder(
@@ -46,18 +48,27 @@ class CustomTextField extends StatelessWidget {
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade400),
+            borderSide: const BorderSide(color: Colors.grey,width: 1.5),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+            borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2.5),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.redAccent),
+            borderSide: const BorderSide(color: Colors.redAccent, width: 1.5),
           ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(
+              color: Colors.red,
+              width: 2.5,
+            )
+          )
         ),
+
       ),
     );
   }
 }
+

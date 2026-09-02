@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/utils/bloc_observer.dart';
 
@@ -25,9 +26,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => AppCubit(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner:  false,
-      home: SignUpScreen(),
+      child: ScreenUtilInit(
+        designSize: const Size(412, 915),
+        child: MaterialApp(
+          debugShowCheckedModeBanner:  false,
+        home: SignUpScreen(),
+        ),
       ),
     );
   }

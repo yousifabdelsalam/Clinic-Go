@@ -1,18 +1,34 @@
 import 'package:clinic_go/core/widgets/glass_background.dart';
 import 'package:clinic_go/core/widgets/myCustomFormField.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController userController = TextEditingController();
+
   TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
+
   TextEditingController ageController = TextEditingController();
+
   TextEditingController genderController = TextEditingController();
+
   TextEditingController phoneController = TextEditingController();
+
   TextEditingController cityController = TextEditingController();
+
+
+  bool obsecureText = true;
 
   @override
   Widget build(BuildContext context) {
+
     return myGlassBackground(
       context: context,
       child: Scaffold(
@@ -20,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 70,),
+              SizedBox(height: 70.h,),
               Center(
                 child: Text(
                   'SIGN UP',
@@ -31,292 +47,97 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 100,),
+              SizedBox(height: 100.h,),
               Center(
                 child: Column(children: [
-                  CustomTextField(controller: userController, labelText: 'Name'),
-                  SizedBox(height: 15),
+                  /////////////////////////////////// NAME
+                  CustomTextField(
+                      controller: userController,
+                      labelText: 'Name',
+                      hintText: 'Enter Your Name',
+                      suffixIcon: Icon(Icons.person)),
+                  SizedBox(height: 15.h),
+                  /////////////////////////////////// EMAIL
                   Container(
-                    width: 300,
-                    child: TextFormField(
-                      controller: emailController,
-                      decoration: InputDecoration(
+                    width: 300.w,
+                    child: CustomTextField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: Colors.white),
                         hintText: 'Enter Your Email',
-                        hintStyle: const TextStyle(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.grey,
-                            width: 1.5,
-                          ),
-                        ),
-
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.blueAccent, // Active border color
-                            width: 2.5, // Slightly thicker when active
-                          ),
-                        ),
-
-                        // 3. Error state border (when validation fails)
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 1.5,
-                          ),
-                        ),
-
-                        // 4. Focused Error state border (active typing while error is shown)
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 2.5,
-                          ),
-                        ),
-                      ),
+                        suffixIcon: Icon(Icons.email_rounded),
                     ),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15.h),
+                  /////////////////////////////////// PASSWORD
                   Container(
-                    width: 300,
-                    child: TextFormField(
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(color: Colors.white),
-                        hintText: 'Enter Your Password',
-                        hintStyle: const TextStyle(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.grey,
-                            width: 1.5,
+                      width: 300.w,
+                      child: CustomTextField(
+                          controller: passwordController,
+                          keyboardType: TextInputType.visiblePassword,
+                          labelText:  'Password',
+                          hintText: 'Enter Your Password',
+                          obscureText: obsecureText,
+                          suffixIcon: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                              obsecureText = !obsecureText;
+                              });
+                            },
+                            child: Icon(
+                              obsecureText? Icons.visibility_off : Icons.visibility,
+                            ),
                           ),
-                        ),
-
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.blueAccent, // Active border color
-                            width: 2.5, // Slightly thicker when active
-                          ),
-                        ),
-
-                        // 3. Error state border (when validation fails)
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 1.5,
-                          ),
-                        ),
-
-                        // 4. Focused Error state border (active typing while error is shown)
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 2.5,
-                          ),
-                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15.h),
+                  /////////////////////////////////// AGE & GENDER
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 143,
-                        child: TextFormField(
-                          controller: ageController,
-                          decoration: InputDecoration(
+                        width: 143.w,
+                        child: CustomTextField(
+                            controller: ageController,
                             labelText: 'Age',
-                            labelStyle: TextStyle(color: Colors.white),
-                            hintText: 'Enter Your Age',
-                            hintStyle: const TextStyle(color: Colors.white),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Colors.grey,
-                                width: 1.5,
-                              ),
-                            ),
-
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Colors.blueAccent, // Active border color
-                                width: 2.5, // Slightly thicker when active
-                              ),
-                            ),
-
-                            // 3. Error state border (when validation fails)
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Colors.red,
-                                width: 1.5,
-                              ),
-                            ),
-
-                            // 4. Focused Error state border (active typing while error is shown)
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Colors.red,
-                                width: 2.5,
-                              ),
-                            ),
-                          ),
+                            hintText: 'Age',
                         ),
                       ),
-                      SizedBox(width: 15),
+                      SizedBox(width: 15.w),
                       Container(
-                        width: 143,
-                        child: TextFormField(
-                          controller: genderController,
-                          decoration: InputDecoration(
+                        width: 143.w,
+                        child: CustomTextField(
+                            controller: genderController,
                             labelText: 'Gender',
-                            labelStyle: TextStyle(color: Colors.white),
-                            hintText: 'Enter Your Gender',
-                            hintStyle: const TextStyle(color: Colors.white),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Colors.grey,
-                                width: 1.5,
-                              ),
-                            ),
-
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Colors.blueAccent, // Active border color
-                                width: 2.5, // Slightly thicker when active
-                              ),
-                            ),
-
-                            // 3. Error state border (when validation fails)
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Colors.red,
-                                width: 1.5,
-                              ),
-                            ),
-
-                            // 4. Focused Error state border (active typing while error is shown)
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(
-                                color: Colors.red,
-                                width: 2.5,
-                              ),
-                            ),
-                          ),
+                            hintText: 'Gender',
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15.h),
+                  /////////////////////////////////// PHONE
                   Container(
-                    width: 300,
-                    child: TextFormField(
-                      controller: phoneController,
-                      decoration: InputDecoration(
+                    width: 300.w,
+                    child: CustomTextField(
+                        controller: phoneController,
+                        keyboardType: TextInputType.phone,
                         labelText: 'Phone',
-                        labelStyle: TextStyle(color: Colors.white),
-                        hintText: 'Enter Your Phone',
-                        hintStyle: const TextStyle(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.grey,
-                            width: 1.5,
-                          ),
-                        ),
-
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.blueAccent, // Active border color
-                            width: 2.5, // Slightly thicker when active
-                          ),
-                        ),
-
-                        // 3. Error state border (when validation fails)
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 1.5,
-                          ),
-                        ),
-
-                        // 4. Focused Error state border (active typing while error is shown)
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 2.5,
-                          ),
-                        ),
-                      ),
+                        hintText: 'Enter Your Phone Number',
+                        suffixIcon: Icon(Icons.phone),
                     ),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15.h),
+                  /////////////////////////////////// CITY
                   Container(
-                    width: 300,
-                    child: TextFormField(
-                      controller: cityController,
-                      decoration: InputDecoration(
+                    width: 300.w,
+                    child: CustomTextField(
+                        controller: cityController,
                         labelText: 'City',
-                        labelStyle: TextStyle(color: Colors.white),
                         hintText: 'Enter Your City',
-                        hintStyle: const TextStyle(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.grey,
-                            width: 1.5,
-                          ),
-                        ),
-
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.blueAccent, // Active border color
-                            width: 2.5, // Slightly thicker when active
-                          ),
-                        ),
-
-                        // 3. Error state border (when validation fails)
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 1.5,
-                          ),
-                        ),
-
-                        // 4. Focused Error state border (active typing while error is shown)
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                            width: 2.5,
-                          ),
-                        ),
-                      ),
-                    ),
+                    )
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 30.h),
+                  /////////////////////////////////// SIGN UP
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
