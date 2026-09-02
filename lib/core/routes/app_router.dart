@@ -1,3 +1,4 @@
+import 'package:clinic_go/core/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/booking/presentation/my_appointments_screen.dart';
@@ -10,7 +11,7 @@ import '../../features/settings/presentation/settings.dart';
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: Routes.onBoardingScreen,
   navigatorKey: _rootNavigatorKey,
   routes: [
     // 🔀 StatefulShellRoute handles persistent bottom navigation tabs automatically
@@ -20,11 +21,21 @@ final GoRouter appRouter = GoRouter(
         return HomeLayout_Screen();
       },
       branches: [
+
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: Routes.onBoardingScreen,
+              builder: (context, state) =>  myAppointments_Screen(),
+            ),
+          ],
+        ),
+
         // Tab 1: Home
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/',
+              path: Routes.homeScreen,
               builder: (context, state) =>  Home_Screen(), // Your home dashboard content
             ),
           ],
@@ -33,7 +44,7 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/my_appointments',
+              path: Routes.myAppointments,
               builder: (context, state) =>  myAppointments_Screen(),
             ),
           ],
@@ -42,7 +53,7 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/categories',
+              path: Routes.categories,
               builder: (context, state) =>  Search_Screen(),
             ),
           ],
@@ -51,7 +62,7 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/settings',
+              path: Routes.settings,
               builder: (context, state) =>  Settings_Screen(),
             ),
           ],
