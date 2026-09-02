@@ -42,14 +42,6 @@ dependencies:
   firebase_messaging: ^16.1.2
   cloud_firestore: ^6.1.3
   go_router: ^17.1.0
-  json_serializable: ^6.14.1
-  freezed: ^4.0.0-dev.3
-  freezed_annotation: ^3.1.0
-  build_runner: ^2.15.1
-  dartz: ^0.10.1
-  intl: ^0.20.3
-  flutter_screenutil: ^5.9.3
-  inner_shadow_container: ^1.0.4
 
 dev_dependencies:
   flutter_test:
