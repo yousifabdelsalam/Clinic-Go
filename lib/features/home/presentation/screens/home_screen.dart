@@ -2,7 +2,7 @@ import 'package:clinic_go/core/widgets/glass_background.dart';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
-import '../../../../core/theme/app_theme.dart';
+import '../../../../core/theme/colors.dart';
 
 class Home_Screen extends StatelessWidget {
 
