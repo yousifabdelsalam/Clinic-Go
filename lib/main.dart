@@ -28,7 +28,11 @@ class MyApp extends StatelessWidget {
       create: (BuildContext context) => AppCubit(),
       child: ScreenUtilInit(
         designSize: const Size(412, 915),
+        minTextAdapt: true,
         child: MaterialApp(
+          theme: ThemeData(
+
+          ),
           debugShowCheckedModeBanner:  false,
         home: SignUpScreen(),
         ),
