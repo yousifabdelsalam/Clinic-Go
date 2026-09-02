@@ -49,6 +49,7 @@ dependencies:
   dartz: ^0.10.1
   intl: ^0.20.3
   flutter_screenutil: ^5.9.3
+  inner_shadow_container: ^1.0.4
 
 dev_dependencies:
   flutter_test:

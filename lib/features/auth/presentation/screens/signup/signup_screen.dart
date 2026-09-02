@@ -1,4 +1,5 @@
 import 'package:clinic_go/core/widgets/glass_background.dart';
+import 'package:clinic_go/core/widgets/glass_glow_button.dart';
 import 'package:clinic_go/core/widgets/myCustomFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,38 +59,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       suffixIcon: Icon(Icons.person)),
                   SizedBox(height: 15.h),
                   /////////////////////////////////// EMAIL
-                  Container(
-                    width: 300.w,
-                    child: CustomTextField(
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        labelText: 'Email',
-                        hintText: 'Enter Your Email',
-                        suffixIcon: Icon(Icons.email_rounded),
-                    ),
+                  CustomTextField(
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      labelText: 'Email',
+                      hintText: 'Enter Your Email',
+                      suffixIcon: Icon(Icons.email_rounded),
                   ),
                   SizedBox(height: 15.h),
                   /////////////////////////////////// PASSWORD
-                  Container(
-                      width: 300.w,
-                      child: CustomTextField(
-                          controller: passwordController,
-                          keyboardType: TextInputType.visiblePassword,
-                          labelText:  'Password',
-                          hintText: 'Enter Your Password',
-                          obscureText: obsecureText,
-                          suffixIcon: GestureDetector(
-                            onTap: (){
-                              setState(() {
-                              obsecureText = !obsecureText;
-                              });
-                            },
-                            child: Icon(
-                              obsecureText? Icons.visibility_off : Icons.visibility,
-                            ),
-                          ),
+                  CustomTextField(
+                      controller: passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      labelText:  'Password',
+                      hintText: 'Enter Your Password',
+                      obscureText: obsecureText,
+                      suffixIcon: GestureDetector(
+                        onTap: (){
+                          setState(() {
+                          obsecureText = !obsecureText;
+                          });
+                        },
+                        child: Icon(
+                          obsecureText? Icons.visibility_off : Icons.visibility,
+                        ),
                       ),
-                    ),
+                  ),
                   SizedBox(height: 15.h),
                   /////////////////////////////////// AGE & GENDER
                   Row(
@@ -116,46 +111,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SizedBox(height: 15.h),
                   /////////////////////////////////// PHONE
-                  Container(
-                    width: 300.w,
-                    child: CustomTextField(
-                        controller: phoneController,
-                        keyboardType: TextInputType.phone,
-                        labelText: 'Phone',
-                        hintText: 'Enter Your Phone Number',
-                        suffixIcon: Icon(Icons.phone),
-                    ),
+                  CustomTextField(
+                      controller: phoneController,
+                      keyboardType: TextInputType.phone,
+                      labelText: 'Phone',
+                      hintText: 'Enter Your Phone Number',
+                      suffixIcon: Icon(Icons.phone),
                   ),
                   SizedBox(height: 15.h),
                   /////////////////////////////////// CITY
-                  Container(
-                    width: 300.w,
-                    child: CustomTextField(
-                        controller: cityController,
-                        labelText: 'City',
-                        hintText: 'Enter Your City',
-                    )
+                  CustomTextField(
+                      controller: cityController,
+                      labelText: 'City',
+                      hintText: 'Enter Your City',
                   ),
                   SizedBox(height: 30.h),
                   /////////////////////////////////// SIGN UP
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      minimumSize: const Size(250, 50),
-                      backgroundColor: Colors.blueAccent,
-                    ),
-                    child: Text(
-                      "SIGN UP",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
+                  GlassGlowButton(text: 'SIGN UP', onPressed: (){})
                 ],),
               ),
 
